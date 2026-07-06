@@ -1,18 +1,32 @@
-# Mobile Capture Harness — Maestro (primary)
+# Mobile Capture Harness — Maestro (OPTIONAL path)
 
-Yes, mobile has a Playwright-equivalent: **Maestro** — one YAML flow runs
-on both iOS simulators and Android emulators, with a built-in
-`takeScreenshot` command. Single-binary install, no WebDriver stack.
+This skill is **web-first** (Playwright). Use this path only when the user
+explicitly wants a mobile manual. Mobile has a Playwright-equivalent:
+**Maestro** — one YAML flow runs on both iOS simulators and Android
+emulators, with a built-in `takeScreenshot` command.
 
 > Verify current syntax against the installed version (`maestro --help`,
 > maestro.dev docs) — commands drift.
 
 ## Setup
 
+**Security rule: never pipe remote installer scripts into a shell**
+(`curl … | bash` executes unreviewed remote code — the same standard this
+skill family applies to screenshots applies to installers).
+
+Install via an auditable channel instead:
+
 ```bash
-curl -fsSL https://get.maestro.mobile.dev | bash   # macOS/Linux
-# iOS: Xcode + simulator booted; Android: emulator running or device attached
+brew install maestro          # macOS — verify the formula first: brew info maestro
 ```
+
+or download a **pinned release** from the official GitHub repository
+(github.com/mobile-dev-inc/maestro), inspect it, then install. Then:
+iOS needs Xcode + a booted simulator; Android needs a running emulator or
+attached device.
+
+If Maestro cannot be installed through an auditable channel, use the
+degraded mode below rather than compromising on the install.
 
 ## Flow skeleton
 

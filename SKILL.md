@@ -3,9 +3,9 @@ name: love-me-love-my-docs
 description: >-
   Auto-generates a beautiful user manual with REAL screenshots captured by
   executable scripts: censuses the app's user flows from routes and
-  navigation, builds a Playwright (Python) capture harness for web or a
-  Maestro flow for mobile (iOS/Android), seeds safe demo data so no real
-  user data appears in images, writes the manual chapter-per-flow with a
+  navigation, builds a Playwright (Python) capture harness for web (the
+  primary focus; mobile via Maestro is an optional path), seeds safe demo
+  data so no real user data appears in images, writes the manual chapter-per-flow with a
   numbered step per screenshot, and renders it beautifully (MkDocs Material
   site, Markdown, or PDF). The capture scripts are committed, so the manual
   regenerates when the UI changes instead of rotting. Use when the user
@@ -52,9 +52,10 @@ Docs Progress:
   (mixed audiences make unusable docs).
 - **Language(s):** write in the product's language first; if multiple,
   captures may need per-locale runs (the harness parameterizes locale).
-- **Platform:** web → Playwright; mobile → Maestro (see feasibility notes
-  in [references/capture-mobile.md](references/capture-mobile.md));
-  both → two harnesses, one manual.
+- **Platform:** **web is the primary focus** → Playwright. Mobile is an
+  optional path (Maestro — see
+  [references/capture-mobile.md](references/capture-mobile.md)) — take it
+  only when the user explicitly asks for a mobile manual.
 - **Output:** MkDocs Material site (recommended — beautiful by default,
   searchable), plain Markdown in `docs/manual/`, or PDF. One choice.
 
@@ -89,8 +90,10 @@ Screenshots outlive databases. Before any capture:
   [references/capture-web.md](references/capture-web.md): stored auth
   state, fixed viewport/theme, wait-for-stable strategies, element
   highlighting before the shot, per-locale parameterization.
-- **Mobile:** Maestro YAML flows with `takeScreenshot` — patterns and
-  alternatives (Fastlane snapshot/screengrab, raw simctl/adb) in
+- **Mobile (optional):** Maestro YAML flows with `takeScreenshot` —
+  patterns, alternatives (Fastlane snapshot/screengrab, raw simctl/adb),
+  and the install-security rule (auditable channels only — **never
+  `curl | bash`**) in
   [references/capture-mobile.md](references/capture-mobile.md). No
   simulator/emulator available = degraded mode: generate the flow files +
   a manual capture checklist, and say so honestly.

@@ -27,10 +27,12 @@ the entire manual is one command, forever.
    - **Web:** [Playwright](https://playwright.dev/python/) (Python):
      stored auth state, pinned viewport/theme, animation-freezing,
      target-element highlighting, per-locale runs.
-   - **Mobile:** [Maestro](https://maestro.dev/) — one YAML flow with
-     `takeScreenshot` runs on iOS **and** Android; Fastlane
+   - **Mobile (optional path):** [Maestro](https://maestro.dev/) — one
+     YAML flow with `takeScreenshot` runs on iOS **and** Android; Fastlane
      snapshot/screengrab for store-screenshot sets; honest degraded mode
-     (flows + manual checklist) when no simulator is available.
+     (flows + manual checklist) when no simulator is available. Installed
+     only via auditable channels (package manager or pinned, inspected
+     release — never `curl | bash`).
 4. **The manual** — chapter per flow: goal, prerequisites, numbered steps
    with one screenshot each (captions say what to *notice*), result,
    troubleshooting from real failure modes. Written in user language —
