@@ -1,3 +1,5 @@
+![love-me-love-my-docs social preview](assets/social-preview.png)
+
 # love-me-love-my-docs
 
 **Auto-generate a beautiful user manual whose screenshots never lie —
