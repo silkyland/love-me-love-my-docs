@@ -54,13 +54,16 @@ they hurt real users and QA too, not just docs.
 | Skill | Moment |
 |-------|--------|
 | [know-my-repo](https://github.com/silkyland/know-my-repo) | Day one: onboard onto a repo with zero knowledge |
-| [deep-plan](https://github.com/silkyland/deep-plan) | Plan the next feature/refactor — evidence-gated |
+| [deep-plan](https://github.com/silkyland/deep-plan) | Plan the next feature/refactor — evidence-gated, 7 phases |
 | [deep-plan-ingest](https://github.com/silkyland/deep-plan) | Distill an accepted plan into living knowledge files |
 | [clean-slate](https://github.com/silkyland/clean-slate) | Reset rotten knowledge files — backup-gated |
 | [transform-my-repo](https://github.com/silkyland/transform-my-repo) | Change the architecture: migration feasibility + strategy |
 | [twin-my-site](https://github.com/silkyland/twin-my-site) | Extend the web product with a native mobile twin |
 | [jury-my-repo](https://github.com/silkyland/jury-my-repo) | Multi-agent adversarial audit with a verified verdict |
 | **love-me-love-my-docs** | A user manual that regenerates itself |
+| [seed-ah](https://github.com/silkyland/seed-ah) | Fake-but-production-like demo data with a manifest |
+| [create-my-team](https://github.com/silkyland/create-my-team) | Spawn and manage a subagent team for any mission |
+| [reproduce-my-bug](https://github.com/silkyland/reproduce-my-bug) | Prove the bug before anyone fixes it |
 
 Shared law: **no claim without evidence** — here: no screenshot without a
 script that reproduces it, no documented step that wasn't actually
