@@ -15,7 +15,9 @@ playwright install chromium
 # docs/capture/run_all.py
 from playwright.sync_api import sync_playwright
 
-BASE = "http://localhost:8000"   # the seeded demo instance, never prod
+BASE = "http://localhost:8000"   # seeded demo instance — production gate:
+                                 # host must be localhost/127.0.0.1/.local/.test,
+                                 # anything else needs explicit user confirmation
 VIEWPORT = {"width": 1280, "height": 800}  # ONE viewport for the whole manual
 
 def shot(page, chapter, n, slug):
@@ -35,9 +37,9 @@ with sync_playwright() as p:
     # Chapter: publish-article
     page.goto(f"{BASE}/articles/new")
     shot(page, "publish-article", 1, "empty-form")
-    page.fill("#title", "How to Grow Orchids")
+    page.get_by_test_id("article-title").fill("How to Grow Orchids")
     shot(page, "publish-article", 2, "filled-form")
-    page.click("button:has-text('Publish')")
+    page.get_by_role("button", name="Publish").click()
     shot(page, "publish-article", 3, "success")
 ```
 
@@ -45,7 +47,16 @@ with sync_playwright() as p:
 
 - **Auth once:** log the demo account in manually one time, save
   `context.storage_state(path="auth.json")`, reuse it — never automate
-  real credentials into the script.
+  real credentials into the script. Stored auth state **expires** — the
+  most common way a capture harness dies at month three. Document the
+  re-mint procedure (the login-and-save command) in the manual's README
+  next to the regeneration command.
+- **Selector policy:** committed scripts use `get_by_test_id` and
+  `get_by_role` (with the accessible name). A bare text or CSS selector
+  (`button:has-text('Publish')`, `#title`) is a rot vector — the first
+  copy change or refactor silently breaks capture. Every one that
+  survives into a committed script is counted and reported as an app
+  finding: the page lacks `data-testid`s or accessible roles.
 - **Stability:** `wait_for_load_state("networkidle")` plus explicit
   `expect(locator).to_be_visible()` on the element the step talks about —
   a screenshot of a spinner documents nothing.
@@ -77,6 +88,8 @@ def highlight(page, selector):
 ## Regeneration contract
 
 `python docs/capture/run_all.py` from a clean seeded state regenerates
-every image. Document that command in the manual README; recommend a CI
-job so a UI change that breaks capture fails the build instead of
-silently rotting the manual.
+every image. The manual README documents the full chain — boot the app,
+run the seed script, re-mint `auth.json` if expired, then run capture —
+so regeneration is copy-paste, not archaeology. Recommend a CI job so a
+UI change that breaks capture fails the build instead of silently
+rotting the manual.

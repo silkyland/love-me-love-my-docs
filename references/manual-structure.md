@@ -88,6 +88,8 @@ One source, three formats — never fork the content per format.
 
 ## Freshness contract
 
-The manual's own README states: the capture command, the seed command,
-and "if you change the UI, re-run capture before merging." Recommend a CI
-job running the harness — a red build is a manual that would have lied.
+The manual's own README states: the app boot command, the seed command,
+the auth-state re-mint command (`auth.json` expires), the capture
+command, and "if you change the UI, re-run capture before merging."
+Recommend a CI job running the harness — a red build is a manual that
+would have lied.

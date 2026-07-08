@@ -22,27 +22,40 @@ the entire manual is one command, forever.
    (`file:line` each), turned into a chapter plan you approve first.
 2. **Demo data hygiene** — a seeded fictional account; **zero real user
    data in any frame** (screenshots outlive databases — treat every one
-   as public forever).
-3. **Capture harness** —
+   as public forever). Mechanical production gate: the harness clicks
+   real buttons and seeding writes real rows, so a non-localhost target
+   requires explicit confirmation by hostname before a single row or
+   click.
+3. **Smoke capture first** — before any per-flow script exists, one
+   screenshot is proven end-to-end (app boots, demo auth works, seed is
+   visible, one image rendered into one chapter page). Operational
+   surprises surface on flow 1, not flow 12.
+4. **Capture harness** —
    - **Web:** [Playwright](https://playwright.dev/python/) (Python):
      stored auth state, pinned viewport/theme, animation-freezing,
-     target-element highlighting, per-locale runs.
+     target-element highlighting, per-locale runs, and a stable-selector
+     policy (`get_by_test_id`/`get_by_role` only — bare text/CSS
+     selectors are reported as app findings). No running app? Honest
+     degraded mode: committed scripts + a manual capture checklist +
+     visible TODO placeholders.
    - **Mobile (optional path):** [Maestro](https://maestro.dev/) — one
      YAML flow with `takeScreenshot` runs on iOS **and** Android; Fastlane
      snapshot/screengrab for store-screenshot sets; honest degraded mode
      (flows + manual checklist) when no simulator is available. Installed
      only via auditable channels (package manager or pinned, inspected
      release — never `curl | bash`).
-4. **The manual** — chapter per flow: goal, prerequisites, numbered steps
+5. **The manual** — chapter per flow: goal, prerequisites, numbered steps
    with one screenshot each (captions say what to *notice*), result,
    troubleshooting from real failure modes. Written in user language —
    "click **Publish**", never "trigger the endpoint".
-5. **Beautiful output** — MkDocs Material by default (brand color pulled
+6. **Beautiful output** — MkDocs Material by default (brand color pulled
    from the product's actual CSS), or plain Markdown, or PDF — one source,
    never forked per format.
-6. **Freshness contract** — capture scripts are committed
-   (`docs/capture/`); the manual documents its own regeneration command;
-   recommended CI job makes a UI change that breaks capture fail loudly
+7. **Freshness contract** — capture scripts are committed
+   (`docs/capture/`); the manual documents its full regeneration chain
+   (boot, seed, auth re-mint, capture); a mechanical rot pre-mortem
+   (selectors, auth expiry, seed drift, pinned environment) plus a
+   recommended CI job make a UI change that breaks capture fail loudly
    instead of letting the manual rot silently.
 
 Bonus: steps the harness can't automate usually mean missing
@@ -82,7 +95,7 @@ Or copy this directory into your agent's skills folder
 
 ```
 love-me-love-my-docs/
-├── SKILL.md                          # 7-step workflow + reproducibility rules
+├── SKILL.md                          # 8-step workflow + reproducibility rules
 └── references/
     ├── capture-web.md                # Playwright (Python) harness patterns
     ├── capture-mobile.md             # Maestro flows + Fastlane/simctl/adb alternatives
