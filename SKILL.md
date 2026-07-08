@@ -170,8 +170,9 @@ config included when that's the choice.
   README (`python docs/capture/run_all.py` or `maestro test flows/`).
 - **Rot pre-mortem** — assume the manual rotted three months from now;
   the known causes are checked mechanically, not pondered:
-  - **Selectors:** zero bare text/CSS selectors in committed scripts, or
-    each one listed as an app finding.
+  - **Selectors:** grep committed scripts for bare text selectors
+    (`:has-text`, `text=`) and CSS selectors (`#`, `.`, `[`); count must
+    be zero or each one listed as an app finding with `file:line`.
   - **Auth:** the `auth.json` re-mint procedure is documented in the
     manual's README (stored auth state expires).
   - **Seed drift:** the seed script is committed next to the harness and
@@ -183,3 +184,14 @@ config included when that's the choice.
   automation (app findings), and the one-command regeneration story.
 - Offer the standing suggestion: wire the capture run into CI so UI
   changes that break the manual fail loudly instead of rotting silently.
+
+## When things go wrong
+
+| Situation | Response |
+|-----------|----------|
+| App won't boot or base URL unreachable | Named finding in Step 4 — report it; do not script around it. Fall back to degraded mode: commit harness skeleton + manual capture checklist with exact filenames, mark image slots with TODO placeholders. |
+| Playwright not installable or no running app available | Degraded mode (Step 5): commit harness + seed scripts (they encode steps), emit manual capture checklist, mark unfilled image slots with visible TODO, report honestly. |
+| Capture script fails on a specific flow mid-run | Triage (Step 6): missing test-id/accessibility-label in app (finding — report it) or flow changed since census (update census). Never skip; re-run until complete. |
+| Stored auth state (`auth.json`) expires during regeneration | Re-mint procedure documented in manual's README (Step 8 rot pre-mortem). Log demo account in manually once, save storage state, document the exact command. |
+| Screenshots inconsistent (different viewport/theme/locale) | Environment constants not pinned (Step 8 rot pre-mortem). Pin BASE, VIEWPORT, locale, color_scheme in one place; never repeat per script. |
+| Manual regeneration command undocumented or fails | Step 8 exit criterion failed. Document full chain in manual's README: boot app, seed, re-mint auth if expired, run capture. Test end-to-end before reporting complete. |
