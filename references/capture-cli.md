@@ -118,9 +118,21 @@ expected result:
 Long outputs (> ~40 lines) live as transcript files under
 `docs/manual/transcripts/<chapter>/NN-slug.txt`; the chapter shows the
 head, an elision, and a link. The harness writes the transcript; a small
-splice step (markers like `<!-- transcript:publish-article/02-create -->`
-in the chapter) re-embeds refreshed output on regeneration — the manual
+splice step re-embeds refreshed output on regeneration — the manual
 never hand-edits captured text.
+
+The splice script lives in `docs/capture/` next to `run_all.sh` (e.g.
+`splice_transcripts.py`) and is committed with it. Chapters carry markers
+like `<!-- transcript:publish-article/02-create -->`; the script replaces
+each marked block with the current `docs/manual/transcripts/` file,
+leaving everything outside the markers untouched:
+
+```python
+# docs/capture/splice_transcripts.py — minimal contract
+# for each <!-- transcript:<chapter>/<slug> --> marker in docs/manual/**,
+# replace the fenced block that follows with the matching
+# docs/manual/transcripts/<chapter>/<slug>.txt contents.
+```
 
 ## Findings the harness surfaces
 

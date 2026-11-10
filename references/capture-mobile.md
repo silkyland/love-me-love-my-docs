@@ -38,9 +38,9 @@ appId: com.example.magazine
 ---
 - launchApp:
     clearState: true          # deterministic start
-- takeScreenshot: manual/publish-article/01-home
+- takeScreenshot: docs/manual/images/publish-article/01-home.png
 - tapOn: "New Article"
-- takeScreenshot: manual/publish-article/02-empty-form
+- takeScreenshot: docs/manual/images/publish-article/02-empty-form.png
 - inputText: "How to Grow Orchids"
 - tapOn: "Publish"
 - assertVisible: "Published"
@@ -76,9 +76,10 @@ Run: `maestro test docs/capture/flows/` (runs every flow in the folder).
 Be honest, don't fake it:
 
 1. Still generate the Maestro flows (they encode the steps — that IS the
-   manual's skeleton).
+   manual's skeleton) and commit the seed scripts.
 2. Emit a manual capture checklist: device profile, locale, the exact
-   screens and filenames to shoot.
+   screens and `docs/manual/images/<chapter>/NN-slug.png` filenames to
+   shoot.
 3. Mark every unfilled image slot in the manual with a visible TODO
    placeholder, listed in the final report — never ship an image slot
-   silently empty.
+   silently empty. The manual is a draft, not a finished manual.

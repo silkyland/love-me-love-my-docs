@@ -88,6 +88,18 @@ def highlight(page, selector):
   usually means the app lacks stable selectors (`data-testid`) — report
   it; adding test-ids helps QA, not just docs.
 
+## Honesty mode — no browser/toolchain
+
+Playwright or the app's toolchain can't be installed or run here:
+
+1. Still commit `docs/capture/run_all.py`, the flow scripts, and the
+   seed/auth skeletons — they encode the steps.
+2. Emit a manual capture checklist: URL, viewport, locale, auth state,
+   exact screens and `docs/manual/images/<chapter>/NN-slug.png` filenames.
+3. Mark every unfilled image slot with a visible TODO; list them in the
+   report. Never substitute a mockup or a hand-drawn screenshot. The
+   manual is a draft, not a finished manual.
+
 ## Regeneration contract
 
 `python docs/capture/run_all.py` from a clean seeded state regenerates

@@ -139,7 +139,9 @@ cheap; finding them on flow 12 of 12 is a rewrite:
    in honesty mode (Step 5).
 2. Establish the session or initial state the manual assumes (web: log
    the demo account in once, save storage state to `docs/capture/auth.json`;
-   CLI: a clean pinned shell/env; desktop: launch to a known window).
+   CLI: a clean pinned shell/env; desktop: launch to a known window;
+   mobile: launch to a known screen with cleared state —
+   `launchApp: clearState: true` — and the demo account logged in).
 3. Verify one seeded entity or one real command works end-to-end.
 4. Capture ONE artifact through the harness skeleton and render ONE
    chapter page that references it, in the chosen output format.

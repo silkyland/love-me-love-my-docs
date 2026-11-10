@@ -56,7 +56,7 @@ faking a capture.
      locale, clean env) and saves real stdout/stderr/exit codes as
      transcripts; secrets and machine-specific noise are scrubbed by
      documented normalization rules.
-   - Can't run the app here? Honest mode: committed harness + a capture
+   - Can't run the app here? Honesty mode: committed harness + a capture
      checklist + visible TODO placeholders, and a report listing exactly
      which flows stay unverified — never a faked capture.
 5. **The manual** — chapter per flow: goal, prerequisites, numbered steps

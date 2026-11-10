@@ -79,8 +79,10 @@ app supports it.
 
 Headless server, no display, permission denied you can't fix:
 
-1. Still commit the capture scripts — they encode the steps.
+1. Still commit the capture and seed scripts — they encode the steps and
+   the data.
 2. Emit a manual capture checklist: OS, window geometry, theme, locale,
-   exact screens and filenames.
+   exact screens and `docs/manual/images/<chapter>/NN-slug.png` filenames.
 3. Mark every unfilled image slot with a visible TODO; list them in the
    report. Never substitute a mockup or a web screenshot "close enough."
+   The manual is a draft, not a finished manual.
