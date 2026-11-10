@@ -1,6 +1,9 @@
 # Web Capture Harness — Playwright (Python)
 
-Patterns for manual-grade screenshots: consistent, annotated, re-runnable.
+The web-platform path of love-me-love-my-docs — sibling paths:
+[capture-desktop.md](capture-desktop.md), [capture-mobile.md](capture-mobile.md),
+[capture-cli.md](capture-cli.md). Patterns for manual-grade screenshots:
+consistent, annotated, re-runnable.
 
 ## Setup
 

@@ -1,9 +1,11 @@
-# Mobile Capture Harness — Maestro (OPTIONAL path)
+# Mobile Capture Harness — Maestro
 
-This skill is **web-first** (Playwright). Use this path only when the user
-explicitly wants a mobile manual. Mobile has a Playwright-equivalent:
-**Maestro** — one YAML flow runs on both iOS simulators and Android
-emulators, with a built-in `takeScreenshot` command.
+Use this path when the program under documentation is a mobile app
+(iOS/Android). Mobile has a Playwright-equivalent: **Maestro** — one YAML
+flow runs on both iOS simulators and Android emulators, with a built-in
+`takeScreenshot` command. Sibling paths: [capture-web.md](capture-web.md)
+for web apps, [capture-desktop.md](capture-desktop.md) for desktop apps,
+[capture-cli.md](capture-cli.md) for command-line programs.
 
 > Verify current syntax against the installed version (`maestro --help`,
 > maestro.dev docs) — commands drift.
@@ -25,8 +27,8 @@ or download a **pinned release** from the official GitHub repository
 iOS needs Xcode + a booted simulator; Android needs a running emulator or
 attached device.
 
-If Maestro cannot be installed through an auditable channel, use the
-degraded mode below rather than compromising on the install.
+If Maestro cannot be installed through an auditable channel, use honesty
+mode (below) rather than compromising on the install.
 
 ## Flow skeleton
 
@@ -69,7 +71,7 @@ Run: `maestro test docs/capture/flows/` (runs every flow in the folder).
 | **Flutter `integration_test`** | Flutter apps: capture inside widget/integration tests |
 | **Raw `xcrun simctl io booted screenshot` / `adb exec-out screencap`** | Fallback: script the taps yourself or shoot manually with a checklist |
 
-## Degraded mode — no simulator/emulator available
+## Honesty mode — no simulator/emulator available
 
 Be honest, don't fake it:
 
